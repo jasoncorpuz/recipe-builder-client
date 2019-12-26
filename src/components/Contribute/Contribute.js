@@ -21,7 +21,6 @@ class Contribute extends Component {
             contribution_name: this.state.contribution,
             ingredient_id: this.state.ingredient,
             recipe_id: randomRecipe,
-            user_id: 3
         }
         
         ApiService.postContibution(newContribution)
@@ -50,7 +49,10 @@ class Contribute extends Component {
     generateRandomRecipe(notIncluded) {
         console.log(notIncluded)
         const { recipes } = this.context
-        const recipeList = recipes.map(rec => {
+        const unfinishedRec = recipes.filter(rec => (
+            rec.completed !== true
+        ))
+        const recipeList = unfinishedRec.map(rec => {
             return rec.id
         })
         const filterDuplicateOut = recipeList.filter(rec =>

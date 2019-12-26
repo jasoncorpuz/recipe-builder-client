@@ -13,7 +13,7 @@ const STORE = {
         Lemons: ['Sour', 'Almost Limey'], 
         Onions: ['Ogre-Layered', 'Pickled'], 
         Sugar: ['Sweet', 'Over Compensated'], 
-        'Soy Sauce': ['Oriental', 'Teriyaki'], 
+        'Soy Sauce': ['Oriental', 'Teriyaki', 'Best of Panda Express'], 
         'Olive Oil': ['Fatty', 'Oily'], 
         Rice: ['Thai', 'Filipino'], 
         Pasta: ['Italian', 'Mediterranean'], 
