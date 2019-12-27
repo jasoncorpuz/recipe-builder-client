@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import RecipeContext from '../RecipeContext';
-import ApiServices from '../../services/api-service'
-import Notifications from '../Notifications/Notifications'
+import TokenService from '../../services/token-service'
+import LoggedOut from '../Logged-Out/LoggedOut'
+
+
 //view my completed recipes, view my contributions
 
 
@@ -15,43 +17,53 @@ class Home extends Component {
 
     static contextType = RecipeContext
 
+    setToken = token => {
+        this.setState({
+          token
+        })
+        const jwt = TokenService.parseJsonToken(token)
+        const { user_id, sub } = jwt
+        console.log(jwt)
+        this.setState({
+          id: user_id,
+          user_name: sub
+        })
+      }
+
     componentDidMount() {
-        ApiServices.getUserbyId(this.context.userId)
-            .then(res => {
-                this.setState({
-                    user_name: res[0].user_name,
-                    id: res[0].id
-                })
-            })
+        this.setToken(TokenService.getAuthToken())
     }
 
-    renderNotifications() {
-        const { id } = this.state
-        return (
-            <div>
-            <NavLink to={`/recipe-list/${id}`} onClick={e => this.handleNotification(e)}>
-                <Notifications />
-            </NavLink>
-            </div>
-        )
-    }
-    handleNotification() {
-        this.setState({
-            touched: true
-        })
-        console.log(this.state)
-    }
-    render() {
-        // const Notes = !this.state.touched ? this.renderNotifications(): console.log('how NOT')
+    renderHomescreen() {
         const { user_name, id } = this.state
+        console.log(this.state)
         return (
             <div className='homescreen'>
                 <h1>Welcome {user_name}!</h1>
-            <div><NavLink to={`/contributions/${id}`}>See my contributions</NavLink></div>
-            <div><NavLink to={`/recipe-list/${id}`}>
-                See my recipes
+                <div><NavLink to={`/contributions/${id}`}>See my contributions</NavLink></div>
+                <div><NavLink to={`/recipe-list/${id}`}>
+                    See my recipes
                 </NavLink></div>
-            <div><Link to='/contribute'>contribute</Link></div>
+                <div><Link to='/contribute'>contribute</Link></div>
+            </div >
+        )
+    }
+
+    pushToLogin() {
+        // this.props.history.push('/login')
+        return <LoggedOut {...this.props} />
+    }
+    render() {
+        // const Notes = !this.state.touched ? this.renderNotifications(): console.log('how NOT')
+
+
+
+        return (
+            <div className='homescreen'>
+                {TokenService.hasAuthToken()
+                    ? this.renderHomescreen()
+                    : this.pushToLogin()
+                }
             </div >
         );
     }

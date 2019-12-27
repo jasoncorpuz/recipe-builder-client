@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ApiServices from '../../../services/api-service'
+import ApiServices from '../../services/api-service'
 import './Signup.css'
 
 
@@ -49,6 +49,7 @@ class Signup extends Component {
 
     verifySpecials(e) {
         e.preventDefault();
+        // eslint-disable-next-line
         const regex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#\$%\^&])[\S]+/
         if (!regex.test(this.state.password)) {
             console.log('password should contain an uppercase letter, lowercase letter, number, and special character')

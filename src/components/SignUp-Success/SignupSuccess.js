@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 
+
 class SignupSuccess extends Component {
     state = {
-        tick: '3'
+        
     }
 
     redirect(){

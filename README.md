@@ -1,5 +1,4 @@
 TODOS: 
-Figure out notifications
-Authentication
+refactor recipe list to use contributions instead
 
  

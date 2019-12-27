@@ -6,8 +6,7 @@ class Login extends Component {
   state = {}
 
   onLoginSuccess() {
-    const { location, history } = this.props
-    const destination = (location.state || {}).from || '/'
+    const { history } = this.props
     history.push('/home')
   }
 

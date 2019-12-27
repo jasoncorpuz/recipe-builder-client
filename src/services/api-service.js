@@ -91,6 +91,15 @@ const ApiService = {
             )
     },
 
+    getRecipesByUser(id) {
+        return fetch(`${config.API_ENDPOINT}/recipes/user/${id}`)
+         .then(res => (
+             (!res.ok)
+              ? res.json().then(e =>Promise.reject(e))
+              :res.json()
+         ))
+    },
+
     getRecipeById(id) {
         return fetch(`${config.API_ENDPOINT}/recipes/${id}`)
             .then(res =>

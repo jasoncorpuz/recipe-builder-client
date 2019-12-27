@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
 import ApiServices from '../../services/api-service';
 import GeneratorService from '../../services/Generator-service'
+import TokenService from '../../services/token-service'
 import { Route, withRouter, Switch } from 'react-router-dom';
 import Home from '../Home/Home'
 import Landing from '../Landing/Landing';
-import Signup from '../Recipe-List/Signup/Signup';
+import Signup from '../Signup/Signup';
 import Login from '../Login/Login'
 import SignupSuccess from '../SignUp-Success/SignupSuccess'
 import Contribute from '../Contribute/Contribute';
 import Recipe from '../Recipe/Recipe';
 import RecipeList from '../Recipe-List/Recipe-List';
+import RecipesByUser from '../Recipes-by-user/RecipesByUser'
 import ContributionSuccess from '../Contribution-Success/Contribution-Success'
 import ContributionsByUser from '../Contributions-by-user/Contributions-by-user'
-import {ToastsContainer, ToastsStore} from 'react-toasts';
+import { ToastsContainer, ToastsStore } from 'react-toasts';
 import Nav from '../Nav/Nav'
 import RecipeContext from '../RecipeContext'
 import './App.css';
 
-let userId; 
+let userId;
 
 class App extends Component {
   state = {
     recipes: [{}], //necessary to avoid null
     ingredients: [{}],
     completedRecipes: [{}], // once a recipe hits 6, move out from recipes to completed recipes & render
-    userId: ''
+    userId: '',
+    token: ''
   }
 
   completedRecipe = recipe => {
@@ -36,19 +39,43 @@ class App extends Component {
         if (rec.length > 3) {
           this.filterRecipes(rec)
         } else {
-        this.props.history.push('/contribution-success') 
-        console.log('not finished')
+          this.props.history.push('/contribution-success')
+          console.log('not finished')
         }
       })
       .catch(err => console.log(err));
-   
+
   }
 
-  setUserId = id =>  {
+  setUserId = id => {
     userId = id
     console.log(userId)
-    this.setState({userId: userId})
+    this.setState({ userId: userId })
   }
+
+  setToken = token => {
+    this.setState({
+      token
+    })
+    const jwt = TokenService.parseJsonToken(token)
+    const { user_id } = jwt
+    this.setState({
+      userId: user_id
+    })
+  }
+
+  // parseJsonToken = (token) => {
+  //   if (token) {
+  //     try {
+  //       return JSON.parse(atob(token.split('.')[1]));
+  //     } catch (error) {
+  //       // ignore
+  //     }
+  //   }
+
+  //   return null;
+  // };
+
 
   filterRecipes(recArr) {
     const completedRec = recArr[0]
@@ -106,11 +133,13 @@ class App extends Component {
   componentDidMount() {
     ApiServices.getAllRecipes()
       .then(recipes => this.setRecipes(recipes))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
 
     ApiServices.getAllIngredients()
       .then(ingre => this.setIngredients(ingre))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
+
+    this.setToken(TokenService.getAuthToken())
   }
 
 
@@ -122,23 +151,26 @@ class App extends Component {
       completedRecipe: this.completedRecipe,
       userId: this.state.userId
     }
+
+    console.log(this.state)
     return (
       <RecipeContext.Provider value={contextValue} >
         <Route path='/' component={Nav} />
         <main>
           <Switch>
-          <Route path='/' component={Landing} exact />
-          <Route path='/signup' component={Signup} />
-          <Route path='/signup-success' component={SignupSuccess} />
-          <Route path='/contribution-success' component={ContributionSuccess} />
-          <Route path='/login' render={(props) => <Login {...props} setUserId={this.setUserId}/>} />
-          <Route path='/contribute' component={Contribute} />
-          <Route path='/recipe-list' component={RecipeList} />
-          <Route path='/home' component={Home} />
-          <Route path='/recipe/:id' render={(props) => <Recipe {...props} />} />
-          <Route path='/contributions/:id' render={(props) => <ContributionsByUser {...props} />} />
+            <Route path='/' component={Landing} exact />
+            <Route path='/signup' component={Signup} />
+            <Route path='/signup-success' component={SignupSuccess} />
+            <Route path='/contribution-success' component={ContributionSuccess} />
+            <Route path='/login' render={(props) => <Login {...props} setUserId={this.setUserId} />} />
+            <Route path='/contribute' component={Contribute} />
+            <Route path='/recipe-list' component={RecipeList} exact />
+            <Route path='/home' render={(props) => <Home {...props} />} />
+            <Route path='/recipe/:id' render={(props) => <Recipe {...props} />} />
+            <Route path='/recipe-list/:id' component={RecipesByUser} />
+            <Route path='/contributions/:id' render={(props) => <ContributionsByUser {...props} />} />
           </Switch>
-        <ToastsContainer store={ToastsStore}/>
+          <ToastsContainer store={ToastsStore} />
         </main>
       </RecipeContext.Provider>
     );
