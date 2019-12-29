@@ -1,4 +1,2 @@
-TODOS: 
-refactor recipe list to use contributions instead
-
- 
+live: //recipe-roulette.now.sh
+ npm run build && now --prod ./build

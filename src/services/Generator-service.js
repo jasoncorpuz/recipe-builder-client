@@ -14,7 +14,6 @@ const GeneratorService = {
         const firstAdj = adjectiveArrOne[Math.floor(Math.random() * adjectiveArrOne.length)]
         const secondAdj = adjectiveArrTwo[Math.floor(Math.random() * adjectiveArrTwo.length)]
 
-        console.log(firstAdj, secondAdj)
         return `${firstAdj} ${secondAdj}`
     },
     

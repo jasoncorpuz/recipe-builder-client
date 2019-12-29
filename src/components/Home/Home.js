@@ -18,17 +18,20 @@ class Home extends Component {
     static contextType = RecipeContext
 
     setToken = token => {
-        this.setState({
-          token
-        })
-        const jwt = TokenService.parseJsonToken(token)
-        const { user_id, sub } = jwt
-        console.log(jwt)
-        this.setState({
-          id: user_id,
-          user_name: sub
-        })
+        if(token) {
+            this.setState({
+            token
+            })
+            const jwt = TokenService.parseJsonToken(token)
+            const { user_id, sub } = jwt
+
+            this.setState({
+            id: user_id,
+            user_name: sub
+            })
+        }    
       }
+      
 
     componentDidMount() {
         this.setToken(TokenService.getAuthToken())
@@ -36,13 +39,13 @@ class Home extends Component {
 
     renderHomescreen() {
         const { user_name, id } = this.state
-        console.log(this.state)
+
         return (
             <div className='homescreen'>
                 <h1>Welcome {user_name}!</h1>
                 <div><NavLink to={`/contributions/${id}`}>See my contributions</NavLink></div>
                 <div><NavLink to={`/recipe-list/${id}`}>
-                    See my recipes
+                    See my completed recipes
                 </NavLink></div>
                 <div><Link to='/contribute'>contribute</Link></div>
             </div >

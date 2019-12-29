@@ -13,7 +13,6 @@ class Contribute extends Component {
     onSubmit(e, cb) {
         e.preventDefault();
         const { completedRecipe } = this.context
-        console.log(completedRecipe)
         const excludedRecId = this.filterDuplicateRecipe(Number(this.state.ingredient)) // = id
         const randomRecipe = this.generateRandomRecipe(excludedRecId)
 
@@ -38,7 +37,6 @@ class Contribute extends Component {
         const filterDup = contributionList.filter(x =>
             x.ingredient_id === ingredientId
         )
-        console.log(filterDup)
         if (filterDup.length === 0) { 
             return 0
         } else {
@@ -47,7 +45,6 @@ class Contribute extends Component {
     }
 
     generateRandomRecipe(notIncluded) {
-        console.log(notIncluded)
         const { recipes } = this.context
         const unfinishedRec = recipes.filter(rec => (
             rec.completed !== true
@@ -57,7 +54,6 @@ class Contribute extends Component {
         })
         const filterDuplicateOut = recipeList.filter(rec =>
             rec !== notIncluded)
-        console.log(filterDuplicateOut)
         const length = filterDuplicateOut.length
         const ind = Math.floor(Math.random() * length)  //returns index
 

@@ -18,7 +18,6 @@ class Signup extends Component {
         }
         ApiServices.createUser(newUser)
         this.props.history.push('/signup-success')
-        console.log(newUser)
     }
 
     passwordChange(pw) {
@@ -59,7 +58,6 @@ class Signup extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <form onSubmit={e => this.verifySpecials(e)}>
                 <legend><h1>Sign Up</h1></legend>

@@ -20,7 +20,6 @@ class Landing extends Component {
                             <Link to='/recipe-list'>see some recipes here...</Link>
                             <p>The path to unknown food awaits.</p>
                             <Link to='/signup'>Sign me up!</Link>
-                            <div><Link to='/contribute'>contribute.</Link></div>
                         </section>
                         <footer>footer</footer>
                     </main>

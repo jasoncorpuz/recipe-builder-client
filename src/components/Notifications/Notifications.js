@@ -16,8 +16,6 @@ class Notifications extends Component {
     static contextType = RecipeContext
 
     filterComplete() {
-        const { contributions } = this.state
-        console.log(contributions)
         const completedRecipesByUser = this.state.contributions.filter(x => x.completed === true)
         const notifications = completedRecipesByUser.length
         // const pastNotifications = this.state.pastNotifications 
@@ -36,7 +34,6 @@ class Notifications extends Component {
             .then(res => this.filterComplete())
     }
     render() {
-        console.log(this.state)
         return (
             <div>You have {this.state.notifications} new recipes!</div>
         );

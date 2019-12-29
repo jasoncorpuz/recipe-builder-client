@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 class LoginSuccess extends Component {
-    state = {  }
+    state = {}
     componentDidMount() {
         this.setTimeOut(() => {
-            console.log('oh YEAH')
+
         }, 2000)
     }
     render() {

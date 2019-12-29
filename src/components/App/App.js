@@ -40,7 +40,7 @@ class App extends Component {
           this.filterRecipes(rec)
         } else {
           this.props.history.push('/contribution-success')
-          console.log('not finished')
+
         }
       })
       .catch(err => console.log(err));
@@ -49,20 +49,25 @@ class App extends Component {
 
   setUserId = id => {
     userId = id
-    console.log(userId)
+    
     this.setState({ userId: userId })
   }
 
   setToken = token => {
-    this.setState({
-      token
-    })
-    const jwt = TokenService.parseJsonToken(token)
-    const { user_id } = jwt
-    this.setState({
-      userId: user_id
-    })
-  }
+    
+    if (token !== null) {
+      this.setState({
+        token
+      })
+      const jwt = TokenService.parseJsonToken(token)
+      const { user_id } = jwt
+      this.setState({
+        userId: user_id
+      })
+    }  else {
+      return null
+    }
+  } 
 
   // parseJsonToken = (token) => {
   //   if (token) {
@@ -110,7 +115,7 @@ class App extends Component {
 
   generateNewRecipe() {
     //api call to generate to new recipe
-    console.log('new recipe generated!')
+    
     ApiServices.generateNewRecipe({ recipe_name: '...pending recipe!' })
       .then(resJson => this.setState({
         recipes: [...this.state.recipes, resJson]
@@ -152,7 +157,7 @@ class App extends Component {
       userId: this.state.userId
     }
 
-    console.log(this.state)
+    
     return (
       <RecipeContext.Provider value={contextValue} >
         <Route path='/' component={Nav} />
