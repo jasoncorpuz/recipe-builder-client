@@ -5,9 +5,6 @@ import TokenService from '../../services/token-service'
 import LoggedOut from '../Logged-Out/LoggedOut'
 
 
-//view my completed recipes, view my contributions
-
-
 class Home extends Component {
     state = {
         user_name: '',

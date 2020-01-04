@@ -69,19 +69,6 @@ class App extends Component {
     }
   } 
 
-  // parseJsonToken = (token) => {
-  //   if (token) {
-  //     try {
-  //       return JSON.parse(atob(token.split('.')[1]));
-  //     } catch (error) {
-  //       // ignore
-  //     }
-  //   }
-
-  //   return null;
-  // };
-
-
   filterRecipes(recArr) {
     const completedRec = recArr[0]
     const ingredients = recArr.map(ing => {
@@ -107,10 +94,6 @@ class App extends Component {
     this.props.history.push('/contribution-success')
     ToastsStore.success("Recipe Completed! View in your recipes.")
     this.generateNewRecipe()
-    //filter a new recipe list out of the state using rec id
-    //set new state
-    //call generate new recipe
-
   }
 
   generateNewRecipe() {
