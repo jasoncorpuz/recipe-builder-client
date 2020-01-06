@@ -51,17 +51,12 @@ const ApiService = {
     },
 
     deleteContribution(id) {
-        return fetch(`${config.API_ENDPOINT}/contributions/`, {
+        return fetch(`${config.API_ENDPOINT}/contributions/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json ',
             }
         })
-            .then(res =>
-                (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
-            )
     },
 
     getAllIngredients() {

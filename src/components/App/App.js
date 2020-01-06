@@ -14,6 +14,7 @@ import RecipeList from '../Recipe-List/Recipe-List';
 import RecipesByUser from '../Recipes-by-user/RecipesByUser'
 import ContributionSuccess from '../Contribution-Success/Contribution-Success'
 import ContributionsByUser from '../Contributions-by-user/Contributions-by-user'
+import DeletionSuccess from '../Deletion-Success/Deletion-Success'
 import { ToastsContainer, ToastsStore } from 'react-toasts';
 import Nav from '../Nav/Nav'
 import RecipeContext from '../RecipeContext'
@@ -99,7 +100,7 @@ class App extends Component {
   generateNewRecipe() {
     //api call to generate to new recipe
     
-    ApiServices.generateNewRecipe({ recipe_name: '...pending recipe!' })
+    ApiServices.generateNewRecipe({ recipe_name: 'pending recipe...!' })
       .then(resJson => this.setState({
         recipes: [...this.state.recipes, resJson]
       }))
@@ -150,6 +151,7 @@ class App extends Component {
             <Route path='/signup' component={Signup} />
             <Route path='/signup-success' component={SignupSuccess} />
             <Route path='/contribution-success' component={ContributionSuccess} />
+            <Route path ='/deletion-success' component={DeletionSuccess} />
             <Route path='/login' render={(props) => <Login {...props} setUserId={this.setUserId} />} />
             <Route path='/contribute' component={Contribute} />
             <Route path='/recipe-list' component={RecipeList} exact />

@@ -4,20 +4,38 @@ import { NavLink, Link } from 'react-router-dom';
 
 class ContributionsByUser extends Component {
     state = {
-        contributions: [{}]
+        contributions: [{}],
+        loaded: false
+    }
+
+
+    onDelete(e){
+        let contributionId = e.target.value
+        ApiService.deleteContribution(contributionId);
+        this.filterContributions(contributionId)
+    }
+
+    filterContributions(id) {
+        const {contributions} = this.state
+        const filtered = contributions.filter(cont => cont !== id)
+        this.setState({
+            contributions: filtered
+        })
+        this.props.history.push(`/deletion-success`)
     }
 
     componentDidMount() {
         ApiService.getContributionsByUser(Number(this.props.match.params.id))
             .then(cont => {
                 this.setState({
-                    contributions: cont
+                    contributions: cont, 
+                    loaded: true
                 })
             })
     }
     render() {
-        const { contributions } = this.state
-        const contList = contributions.length !== 1 ? 
+        const { contributions, loaded } = this.state
+        const contList = loaded ? 
         contributions.map(cont => {    
             if(cont.recipe !== 'pending recipe...') {
                 return (
@@ -31,6 +49,7 @@ class ContributionsByUser extends Component {
                     <div key={cont.id} id={cont.id} className='contribution'>
                         {cont.ingredient} was contributed to {''}
                         <Link to='#'>{cont.recipe}</Link>
+                        <button value={cont.id} onClick={(e) => this.onDelete(e)}>Delete</button>
                     </div>
                 )
              }  
