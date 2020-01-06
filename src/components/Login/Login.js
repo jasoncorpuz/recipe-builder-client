@@ -3,7 +3,9 @@ import AuthApiService from '../../services/auth-api-services'
 import TokenService from '../../services/token-service'
 
 class Login extends Component {
-  state = {}
+  state = {
+    error: null
+  }
 
   onLoginSuccess() {
     const { history } = this.props
@@ -20,25 +22,32 @@ class Login extends Component {
       user_name: user_name.value,
       password: password.value
     })
-     .then(res => {
-       user_name.value=''
-       password.value=''
-       TokenService.saveAuthToken(res.authToken)
-       this.props.setUserId(res.id)
-       this.onLoginSuccess()
-     })
+      .then(res => {
+        user_name.value = ''
+        password.value = ''
+        TokenService.saveAuthToken(res.authToken)
+        this.props.setUserId(res.id)
+        this.onLoginSuccess()
+      })
+      .catch(res => {
+        this.setState({ error: res.error })
+      })
   }
 
   render() {
+    const { error } = this.state
     return (
       <form onSubmit={e => this.handleSubmit(e)}>
+        <div role='alert'>
+          {error && <p>{error}</p>}
+        </div>
         <legend><h1>Log In</h1></legend>
         <section>
           <fieldset>
             <label htmlFor='user-name'>User Name:</label>
-            <input type='text' placeholder="username" name='user_name' />
+            <input type='text' placeholder="username" name='user_name' required />
             <label htmlFor='password'>Password:</label>
-            <input type='password' placeholder="password" name='password'/>
+            <input type='password' placeholder="password" name='password' required />
             <button type='submit'>submit</button>
           </fieldset>
         </section>

@@ -8,7 +8,7 @@ class Signup extends Component {
         username: '',
         password: '',
         confirmPassword: '',
-        success:false
+        success: false
     }
 
     handleSubmit() {
@@ -22,7 +22,8 @@ class Signup extends Component {
 
     passwordChange(pw) {
         this.setState({
-            password: pw
+            password: pw,
+            error: null
         })
     }
 
@@ -42,7 +43,9 @@ class Signup extends Component {
         this.state.password === this.state.confirmPassword ?
             // this.verifySpecials()
             this.handleSubmit()
-         : console.log(`passwords don't match`)
+            : this.setState({
+                error: `Passwords don't match.`
+            })
         //render passwords must match
     }
 
@@ -51,15 +54,21 @@ class Signup extends Component {
         // eslint-disable-next-line
         const regex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#\$%\^&])[\S]+/
         if (!regex.test(this.state.password)) {
-            console.log('password should contain an uppercase letter, lowercase letter, number, and special character')
+            this.setState({
+                error: 'Password should contain an uppercase letter, lowercase letter, number, and special character and must be 8 characters long.'
+            })
         } else {
             this.verifyPw()
         }
     }
 
     render() {
+        const { error } = this.state
         return (
             <form onSubmit={e => this.verifySpecials(e)}>
+                <div role='alert'>
+                    {error && <p>{error}</p>}
+                </div>
                 <legend><h1>Sign Up</h1></legend>
                 <section>
                     <fieldset>
@@ -68,12 +77,14 @@ class Signup extends Component {
                             type='text'
                             placeholder="username"
                             onChange={e => this.usernameChange(e.target.value)}
+                            required
                         />
                         <label htmlFor='password'>Password:</label>
                         <input
                             type='password'
                             placeholder="password"
                             onChange={e => this.passwordChange(e.target.value)}
+                            required
                         />
                         <label
                             htmlFor='confirm-password'>
@@ -83,6 +94,7 @@ class Signup extends Component {
                             type='password'
                             placeholder="password"
                             onChange={e => this.passwordConfirmChange(e.target.value)}
+                            required
                         />
                         <button type='submit'>submit</button>
                     </fieldset>
