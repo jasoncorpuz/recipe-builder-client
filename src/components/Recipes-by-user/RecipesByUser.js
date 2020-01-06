@@ -33,8 +33,8 @@ class RecipesByUser extends Component {
         const { recipes } = this.state
         const recipeList = recipes.length !== 0 ? recipes.map(rec => {
             return (
-                <div>
-                <NavLink to={`/recipe/${rec.recipe_id}`} className='recipe' key={rec.recipe_id} id={rec.recipe_id}>
+                <div key={rec.recipe_id}>
+                <NavLink to={`/recipe/${rec.recipe_id}`} className='recipe'  id={rec.recipe_id}>
                     {rec.recipe}
                 </NavLink>
                 </div>
