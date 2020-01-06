@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import RecipeContext from '../RecipeContext';
 import TokenService from '../../services/token-service'
 import LoggedOut from '../Logged-Out/LoggedOut'
-
+import './Home.css'
 
 class Home extends Component {
     state = {
@@ -38,7 +38,7 @@ class Home extends Component {
         const { user_name, id } = this.state
 
         return (
-            <div className='homescreen'>
+            <section className='homescreen'>
                 <h1>Welcome {user_name}!</h1>
                 <div>
                     <NavLink to={`/contributions/${id}`}>
@@ -55,7 +55,7 @@ class Home extends Component {
                         Contribute
                     </Link>
                 </div>
-            </div >
+            </section >
         )
     }
 

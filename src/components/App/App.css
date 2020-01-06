@@ -5,8 +5,8 @@ font-family: 'Open Sans', sans-serif; */
 
 .App {
   text-align: center;
+  
 }
-
 
 
 button {
@@ -31,8 +31,58 @@ main {
   line-height: 24px;
 }
 
+body{
+  background-color: rgba(2, 128, 144, 1);
+}
+
 a {
   text-decoration: none;
   color: black;
 }
 
+form {
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5%;
+}
+
+fieldset{
+  border: 1px white;
+}
+
+input {
+  width: 60%;
+  height: 30px;
+  font-size: 20px;
+}
+
+select {
+  width: 60%;
+  height: 30px;
+  font-size: 20px;
+}
+
+button {
+  width: 120px;
+  height: 25px;
+  font-size: 20px;
+  background-color: rgba(175, 172, 172, 0.877);
+  color: white;
+  padding-bottom: 15px;
+}
+
+section {
+  background-color: white;
+  border-radius: 5%;
+}
+
+@media only screen and (min-width:650px) {
+  form {
+    
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+
+}

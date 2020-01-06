@@ -43,10 +43,11 @@ class ContributionsByUser extends Component {
             </div>
 
         return (
-            <div>
+            <section className='contributions-by-user'>
                 <h1>{contributions[0].contributor}</h1>
                 {contList}
-            </div>
+            </section>
+
         );
     }
 }

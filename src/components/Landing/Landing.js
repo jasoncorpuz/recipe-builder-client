@@ -6,7 +6,7 @@ class Landing extends Component {
     state = {}
     render() {
         return (
-            <main role='main'>
+            <main role='main' className='landing'>
                     <h1 className='title'>Recipe Roulette!</h1>
                         <h2>purely chaotic concoctions.</h2>
                         <section>

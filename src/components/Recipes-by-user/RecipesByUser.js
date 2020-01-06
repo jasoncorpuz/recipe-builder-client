@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/api-service'
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, } from 'react-router-dom';
 
 class RecipesByUser extends Component {
     state = {
