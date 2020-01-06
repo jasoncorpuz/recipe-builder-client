@@ -1,6 +1,13 @@
+/* font-family: 'Yellowtail', cursive;
+font-family: 'Lato', sans-serif;
+font-family: 'Open Sans', sans-serif; */
+
+
 .App {
   text-align: center;
 }
+
+
 
 button {
   margin: 10px
@@ -12,13 +19,20 @@ label {
 
 h1 {
   margin-bottom: 13px;
+  font-family: 'Yellowtail', cursive;
 }
 
 main {
   margin-top: 70px;
+  margin-left: 13px;
+  margin-right: 13px;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 a {
   text-decoration: none;
   color: black;
 }
+

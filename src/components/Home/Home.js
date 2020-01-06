@@ -15,20 +15,20 @@ class Home extends Component {
     static contextType = RecipeContext
 
     setToken = token => {
-        if(token) {
+        if (token) {
             this.setState({
-            token
+                token
             })
             const jwt = TokenService.parseJsonToken(token)
             const { user_id, sub } = jwt
 
             this.setState({
-            id: user_id,
-            user_name: sub
+                id: user_id,
+                user_name: sub
             })
-        }    
-      }
-      
+        }
+    }
+
 
     componentDidMount() {
         this.setToken(TokenService.getAuthToken())
@@ -40,11 +40,21 @@ class Home extends Component {
         return (
             <div className='homescreen'>
                 <h1>Welcome {user_name}!</h1>
-                <div><NavLink to={`/contributions/${id}`}>See my contributions</NavLink></div>
-                <div><NavLink to={`/recipe-list/${id}`}>
-                    See my completed recipes
-                </NavLink></div>
-                <div><Link to='/contribute'>contribute</Link></div>
+                <div>
+                    <NavLink to={`/contributions/${id}`}>
+                        My contributions
+                </NavLink>
+                </div>
+                <div>
+                    <NavLink to={`/recipe-list/${id}`}>
+                        My completed recipes
+                </NavLink>
+                </div>
+                <div>
+                    <Link to='/contribute'>
+                        Contribute
+                    </Link>
+                </div>
             </div >
         )
     }

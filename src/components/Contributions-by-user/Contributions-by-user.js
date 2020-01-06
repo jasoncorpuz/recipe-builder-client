@@ -16,9 +16,11 @@ class ContributionsByUser extends Component {
             })
     }
     render() {
+        
         const { contributions } = this.state
         const contList = contributions.length !== 1 ? 
         contributions.map(cont => {    
+            
             if(cont.recipe !== 'pending recipe...') {
                 return (
                     <div key={cont.id} id={cont.id} className='contribution'>
