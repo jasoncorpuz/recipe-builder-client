@@ -22,7 +22,6 @@ class Recipe extends Component {
         const { recipe } = this.state
         const contributionsList = recipe.length !== 1 ? 
         recipe.map(cont => {
-            console.log(cont)
             return(
                 <div key={cont.id} id={cont.id}>
                     <h2>{cont.ingredient}</h2>

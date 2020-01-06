@@ -54,10 +54,6 @@ class Home extends Component {
         return <LoggedOut {...this.props} />
     }
     render() {
-        // const Notes = !this.state.touched ? this.renderNotifications(): console.log('how NOT')
-
-
-
         return (
             <div className='homescreen'>
                 {TokenService.hasAuthToken()
