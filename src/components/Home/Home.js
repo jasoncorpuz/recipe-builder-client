@@ -41,6 +41,11 @@ class Home extends Component {
             <section className='homescreen'>
                 <h1>Welcome {user_name}!</h1>
                 <div>
+                    <Link to='/contribute'>
+                        Contribute
+                    </Link>
+                </div>
+                <div>
                     <NavLink to={`/contributions/${id}`}>
                         My contributions
                 </NavLink>
@@ -49,11 +54,6 @@ class Home extends Component {
                     <NavLink to={`/recipe-list/${id}`}>
                         My completed recipes
                 </NavLink>
-                </div>
-                <div>
-                    <Link to='/contribute'>
-                        Contribute
-                    </Link>
                 </div>
             </section >
         )

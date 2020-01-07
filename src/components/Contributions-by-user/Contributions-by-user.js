@@ -4,23 +4,24 @@ import { NavLink, Link } from 'react-router-dom';
 
 class ContributionsByUser extends Component {
     state = {
-        contributions: [{}]
+        contributions: [{}],
+        loaded:false
     }
 
     componentDidMount() {
         ApiService.getContributionsByUser(Number(this.props.match.params.id))
             .then(cont => {
                 this.setState({
-                    contributions: cont
+                    contributions: cont,
+                    loaded: true
                 })
             })
     }
     render() {
         
-        const { contributions } = this.state
-        const contList = contributions.length !== 1 ? 
+        const { contributions,loaded } = this.state
+        const contList =  loaded ? 
         contributions.map(cont => {    
-            
             if(cont.recipe !== 'pending recipe...') {
                 return (
                     <div key={cont.id} id={cont.id} className='contribution'>
