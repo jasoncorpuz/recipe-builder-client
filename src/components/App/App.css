@@ -74,16 +74,19 @@ form {
   background-color: white;
   border: 1px solid white;
   border-radius: 5%;
+  
 }
 
 fieldset {
   border: 1px white;
+  flex-direction: column;
 }
 
 input {
   width: 60%;
   height: 30px;
   font-size: 20px;
+  display: block;
 }
 
 select {
@@ -108,7 +111,11 @@ button:hover {
 section {
   background-color: white;
   border-radius: 5%;
-  padding: 10px
+  padding: 10px 20px
+}
+
+legend {
+display: block;
 }
 
 @media only screen and (min-width:650px) {
