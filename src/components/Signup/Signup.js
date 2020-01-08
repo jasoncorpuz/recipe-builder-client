@@ -19,29 +19,29 @@ class Signup extends Component {
             password: this.state.password
         }
         ApiServices.createUser(newUser)
-         .then(res => {
-             this.loginNewUser()
-         })
+            .then(res => {
+                this.loginNewUser()
+            })
     }
 
     onLoginSuccess() {
         const { history } = this.props
         history.push('/home')
-      }
+    }
 
     loginNewUser() {
         AuthApiService.postLogin({
             user_name: this.state.username,
             password: this.state.password
         })
-        .then(res => {
-            TokenService.saveAuthToken(res.authToken)
-            this.props.setUserId(res.id)
-            this.onLoginSuccess()
-          })
-          .catch(res => {
-            this.setState({ error: res.error })
-          })
+            .then(res => {
+                TokenService.saveAuthToken(res.authToken)
+                this.props.setUserId(res.id)
+                this.onLoginSuccess()
+            })
+            .catch(res => {
+                this.setState({ error: res.error })
+            })
     }
 
     passwordChange(pw) {
@@ -90,10 +90,9 @@ class Signup extends Component {
         const { error } = this.state
         return (
             <form onSubmit={e => this.verifySpecials(e)}>
-
-                <legend><h1>Sign Up</h1></legend>
                 <section>
                     <fieldset>
+                        <legend><h1>Sign Up</h1></legend>
                         <label htmlFor='user-name'>User Name:</label>
                         <input
                             type='text'
@@ -121,9 +120,9 @@ class Signup extends Component {
                         />
                         <span>password must contain 8 characters (at least one of each: uppercase, lowercase, number and special character)</span>
                         <button type='submit'>submit</button>
-                    <div role='alert'>
-                    {error && <p>{error}</p>}
-                    </div>
+                        <div role='alert'>
+                            {error && <p>{error}</p>}
+                        </div>
                     </fieldset>
                 </section>
             </form>

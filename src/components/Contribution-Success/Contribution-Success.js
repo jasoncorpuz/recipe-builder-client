@@ -5,10 +5,10 @@ class ContributionSuccess extends Component {
     state = {  }
     render() {
         return (
-            <div className='contribution-success'>
+            <section className='contribution-success'>
                 Contributed to a random recipe! You will be notified when this recipe is complete.
                 <div className='home-link'><Link to='/home'>Back to home.</Link></div>
-            </div>
+            </section>
         );
     }
 }

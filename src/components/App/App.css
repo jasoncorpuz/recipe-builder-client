@@ -49,6 +49,7 @@ main {
   margin-top: 70px;
   margin-left: 13px;
   margin-right: 13px;
+  
   font-family: 'Lato', sans-serif;
   font-size: 20px;
   line-height: 24px;
@@ -111,11 +112,16 @@ button:hover {
 section {
   background-color: white;
   border-radius: 5%;
-  padding: 10px 20px
+  padding: 10px 20px;
+  padding-bottom: 40px;
 }
 
 legend {
 display: block;
+}
+
+h1{
+  font-size: 30px;
 }
 
 @media only screen and (min-width:650px) {
@@ -129,6 +135,10 @@ display: block;
 }
 
 @media only screen and (min-width: 992px) {
+  h1{
+    font-size: 43px;
+  }
+
   main {
     font-size: 30px;
   }

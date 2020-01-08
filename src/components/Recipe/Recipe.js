@@ -33,7 +33,7 @@ class Recipe extends Component {
 
         return (
             <section className='recipe'>
-            <h1>{recipe[0].recipe}</h1>
+            <h1 className='recipe-title'>{recipe[0].recipe}</h1>
             {contributionsList}
             </section>
         );

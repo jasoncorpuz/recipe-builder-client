@@ -1,9 +1,32 @@
 div.name {
     margin-top: 0px;
-    margin-bottom: 200px
+    margin-bottom: 0px;
+    top:12px;
+    line-height: 20px;
+}
+
+div.contribution {
+    margin-bottom: 40px;
 }
 
 span.contribution-name {
-    font-size: 28px;
+    font-size: 20px;
     font-style: italic;
 }
+
+section.contributions-by-user {
+    line-height: 36px;
+    min-height: 700px;
+}
+
+
+@media only screen and (min-width:650px) {
+    div.contribution {
+        margin-bottom: 10px;
+    }
+  }
+  
+  @media only screen and (min-width: 992px) {
+
+  }
+  
