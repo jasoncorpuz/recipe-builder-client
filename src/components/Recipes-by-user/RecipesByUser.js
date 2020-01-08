@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/api-service'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 class RecipesByUser extends Component {
     state = {
@@ -28,8 +28,7 @@ class RecipesByUser extends Component {
         ApiService.getRecipesByUser(this.props.match.params.id)
             .then(res => this.setRecipes(res))
     }
-    render() {
-        
+    render() {        
         const { recipes } = this.state
         const recipeList = recipes.length !== 0 ? recipes.map(rec => {
             return (
@@ -40,9 +39,16 @@ class RecipesByUser extends Component {
                 </div>
             )
         })
-            : null
+            : 
+            <section className='alert'>
+            <h2>You haven't contributed anything yet!</h2>
+                <div className='link'><Link to='/contribute'>Get started here.</Link></div>
+           </section>
         return (
-            <section>{recipeList}</section>
+            <section>
+                <h1>My Recipes</h1>
+                {recipeList}
+            </section>
         );
     }
 }

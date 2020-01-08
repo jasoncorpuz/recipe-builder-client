@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RecipeContext from '../RecipeContext'
 import ApiService from '../../services/api-service';
+import './Contribute.css'
 
 class Contribute extends Component {
     state = {
@@ -97,11 +98,14 @@ class Contribute extends Component {
                     <legend><h1>contribute to a recipe...</h1></legend>
                     <label htmlFor='contribution-name' >name your contribution:</label>
                     <input type='text' placeholder="contribution name" onChange={e => this.updateContName(e)} />
-                    <label htmlFor='ingredient'>chose your ingredient:</label>
+                    <label htmlFor='ingredient'>choose your ingredient:</label>
                     <select onChange={e => this.updateIng(e, this.context.completedRecipe)}>
                         {options}
                     </select>
                     <button type='submit'>submit</button>
+                    <div className='info'>
+                        <p className='info'>When a recipe hits 5 contributions, it's completed. You'll be notified when a recipe you've contributed to is finished.</p>
+                    </div>
                 </fieldset>
             </form>
         );

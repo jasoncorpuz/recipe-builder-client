@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/api-service'
 import { NavLink, Link } from 'react-router-dom';
+import './Contribution-by-user.css'
 
 class ContributionsByUser extends Component {
     state = {
@@ -19,7 +20,8 @@ class ContributionsByUser extends Component {
         const {contributions} = this.state
         const filtered = contributions.filter(cont => cont !== id)
         this.setState({
-            contributions: filtered
+            contributions: filtered,
+            loaded:true
         })
         this.props.history.push(`/deletion-success`)
     }
@@ -28,20 +30,23 @@ class ContributionsByUser extends Component {
         ApiService.getContributionsByUser(Number(this.props.match.params.id))
             .then(cont => {
                 this.setState({
-                    contributions: cont, 
+                    contributions: cont,
                     loaded: true
                 })
             })
     }
     render() {
-        const { contributions, loaded } = this.state
-        const contList = loaded ? 
-        contributions.map(cont => {    
-            if(cont.recipe !== 'pending recipe...') {
+        
+        const { contributions,loaded } = this.state
+        const contList =  loaded ? 
+        contributions.map(cont => {
+            console.log(cont)
+            if(cont.recipe.completed) {
                 return (
                     <div key={cont.id} id={cont.id} className='contribution'>
                         {cont.ingredient} was contributed to {''}
                         <NavLink to={`/recipe/${cont.recipe_id}`}>{cont.recipe}</NavLink>
+                        <div className='name'>contribution name:</div>
                     </div>
                 )
              }  else {
@@ -49,21 +54,22 @@ class ContributionsByUser extends Component {
                     <div key={cont.id} id={cont.id} className='contribution'>
                         {cont.ingredient} was contributed to {''}
                         <Link to='#'>{cont.recipe}</Link>
-                        <button value={cont.id} onClick={(e) => this.onDelete(e)}>Delete</button>
+                        <div className='name'>contribution name: {cont.contribution_name}</div>
                     </div>
                 )
              }  
         }) 
-         : <div>
+         : <section className='alert'>
              <h2>You haven't contributed anything yet!</h2>
                  <div className='link'><Link to='/contribute'>Get started here.</Link></div>
-            </div>
+            </section>
 
         return (
-            <div>
+            <section className='contributions-by-user'>
                 <h1>{contributions[0].contributor}</h1>
                 {contList}
-            </div>
+            </section>
+
         );
     }
 }

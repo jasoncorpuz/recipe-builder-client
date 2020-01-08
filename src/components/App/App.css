@@ -1,6 +1,15 @@
+/* font-family: 'Yellowtail', cursive;
+font-family: 'Lato', sans-serif;
+font-family: 'Open Sans', sans-serif; */
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
+
 }
+
 
 button {
   margin: 10px
@@ -12,13 +21,108 @@ label {
 
 h1 {
   margin-bottom: 13px;
+  font-family: 'Varela Round', cursive;
+}
+
+label {
+  margin-top: 10px;
 }
 
 main {
   margin-top: 70px;
+  margin-left: 13px;
+  margin-right: 13px;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  background-color: rgba(2, 128, 144, 1);
 }
 
 a {
   text-decoration: none;
   color: black;
+}
+
+a:hover {
+  color: red;
+}
+
+form {
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5%;
+}
+
+fieldset {
+  border: 1px white;
+}
+
+input {
+  width: 60%;
+  height: 30px;
+  font-size: 20px;
+}
+
+select {
+  width: 60%;
+  height: 30px;
+  font-size: 20px;
+}
+
+button {
+  width: 120px;
+  height: 25px;
+  font-size: 20px;
+  background-color: rgba(175, 172, 172, 0.877);
+  color: white;
+  padding-bottom: 15px;
+}
+
+button:hover {
+  color: black;
+}
+
+section {
+  background-color: white;
+  border-radius: 5%;
+  padding: 10px
+}
+
+@media only screen and (min-width:650px) {
+  main {
+    margin-top: 42px;
+  }
+
+  section {
+    width: 400px
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  main {
+    font-size: 30px;
+  }
+
+  section {
+    width: 800px;
+    min-height: 650px;
+  }
+
+  input {
+    margin: 15px
+  }
+
+  select {
+    margin: 15px;
+  }
+
+  form {
+    min-height: 500px;
+    width: 800px;
+  }
 }

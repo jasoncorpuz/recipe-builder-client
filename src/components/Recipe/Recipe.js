@@ -32,10 +32,10 @@ class Recipe extends Component {
         :null
 
         return (
-            <>
+            <section className='recipe'>
             <h1>{recipe[0].recipe}</h1>
             {contributionsList}
-            </>
+            </section>
         );
     }
 }
