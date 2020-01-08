@@ -11,9 +11,8 @@ class Landing extends Component {
                         <h2>purely chaotic concoctions.</h2>
                         <section>
                             <header>Create with other people...</header>
-                            <p className='description'>Recipe Roulette lets you collaborate and contribute to recipes with other people -- randomnly. You won't find out what's in your recipe until after its finished. Should you cook it or not?</p>
+                            <p className='description'>Recipe Roulette lets you collaborate and contribute to recipes with other people -- randomly. You won't find out what's in your recipe until after its finished. Should you cook it or not?</p>
                         </section>
-                        <header>See all of the crazy concoctions...</header>
                         <p>See what people across have come up with! While some recipes may be completely impractical, some will spark inspiration for the chef that likes challenges.</p>
                         <section>
                             <header>Start your chaotic collaborations now!</header>
