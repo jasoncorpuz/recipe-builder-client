@@ -40,12 +40,12 @@ class ContributionsByUser extends Component {
         const { contributions,loaded } = this.state
         const contList =  loaded ? 
         contributions.map(cont => {
-            if(cont.recipe.completed === true) {
+            if(cont.completed === true) {
                 return (
                     <div key={cont.id} id={cont.id} className='contribution'>
                         {cont.ingredient} was contributed to {''}
                         <NavLink to={`/recipe/${cont.recipe_id}`}>{cont.recipe}</NavLink>
-                        <div className='name'>contribution name:</div>
+                        <div className='name'>contribution name: <span className='contribution-name'>{cont.contribution_name}</span></div>
                     </div>
                 )
              }  else {
