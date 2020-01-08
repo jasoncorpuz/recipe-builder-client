@@ -13,3 +13,7 @@ fieldset {
 label {
     text-align: left;
 }
+
+input.confirm-password{
+    margin-bottom: 20px;
+}

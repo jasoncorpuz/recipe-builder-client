@@ -148,11 +148,11 @@ class App extends Component {
         <main>
           <Switch>
             <Route path='/' component={Landing} exact />
-            <Route path='/signup' component={Signup} />
             <Route path='/signup-success' component={SignupSuccess} />
             <Route path='/contribution-success' component={ContributionSuccess} />
             <Route path ='/deletion-success' component={DeletionSuccess} />
             <Route path='/login' render={(props) => <Login {...props} setUserId={this.setUserId} />} />
+            <Route path='/signup' render={(props) => <Signup {...props} setUserId={this.setUserId} />} />
             <Route path='/contribute' component={Contribute} />
             <Route path='/recipe-list' component={RecipeList} exact />
             <Route path='/home' render={(props) => <Home {...props} />} />

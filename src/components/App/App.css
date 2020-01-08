@@ -1,6 +1,19 @@
 /* font-family: 'Yellowtail', cursive;
 font-family: 'Lato', sans-serif;
 font-family: 'Open Sans', sans-serif; */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+body,html{margin:0;border:0;padding:0;}
+
 * {
   box-sizing: border-box;
 }
@@ -13,6 +26,10 @@ font-family: 'Open Sans', sans-serif; */
 
 button {
   margin: 10px
+}
+
+button:hover{
+  cursor: pointer;
 }
 
 label {
@@ -50,6 +67,7 @@ a {
 
 a:hover {
   color: red;
+  cursor: pointer;
 }
 
 form {
@@ -99,7 +117,7 @@ section {
   }
 
   section {
-    width: 400px
+    width: 500px
   }
 }
 

@@ -31,9 +31,6 @@ class Contribute extends Component {
     }
 
     filterDuplicateRecipe(ingredientId) {
-        //?? if ingredient is in recipe, filter out that recipe rd
-        // randomnly select from array that is filtered
-        // create sudo recipes??? this worked.
         const { contributionList } = this.state
         const filterDup = contributionList.filter(x =>
             x.ingredient_id === ingredientId
@@ -97,7 +94,7 @@ class Contribute extends Component {
                 <fieldset>
                     <legend><h1>contribute to a recipe...</h1></legend>
                     <label htmlFor='contribution-name' >name your contribution:</label>
-                    <input type='text' placeholder="contribution name" onChange={e => this.updateContName(e)} />
+                    <input type='text' placeholder="contribution name" onChange={e => this.updateContName(e)} required/>
                     <label htmlFor='ingredient'>choose your ingredient:</label>
                     <select onChange={e => this.updateIng(e, this.context.completedRecipe)}>
                         {options}

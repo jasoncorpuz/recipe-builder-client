@@ -40,10 +40,10 @@ class RecipesByUser extends Component {
             )
         })
             : 
-            <section className='alert'>
+            <>
             <h2>You haven't contributed anything yet!</h2>
                 <div className='link'><Link to='/contribute'>Get started here.</Link></div>
-           </section>
+           </>
         return (
             <section>
                 <h1>My Recipes</h1>

@@ -29,10 +29,10 @@ class RecipeList extends Component {
             })
             : null
         return (
-            <div>
+            <section className='recipe-list'>
                 <h1>Completed Concoctions:</h1>
                 {list}
-            </div>
+            </section>
         );
     }
 }

@@ -1,3 +1,9 @@
 div.name {
     margin-top: 0px;
+    margin-bottom: 200px
+}
+
+span.contribution-name {
+    font-size: 28px;
+    font-style: italic;
 }

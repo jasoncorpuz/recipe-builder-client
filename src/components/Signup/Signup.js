@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ApiServices from '../../services/api-service'
 import './Signup.css'
+import AuthApiService from '../../services/auth-api-services'
+import TokenService from '../../services/token-service'
 
 
 class Signup extends Component {
@@ -17,7 +19,29 @@ class Signup extends Component {
             password: this.state.password
         }
         ApiServices.createUser(newUser)
-        this.props.history.push('/signup-success')
+         .then(res => {
+             this.loginNewUser()
+         })
+    }
+
+    onLoginSuccess() {
+        const { history } = this.props
+        history.push('/home')
+      }
+
+    loginNewUser() {
+        AuthApiService.postLogin({
+            user_name: this.state.username,
+            password: this.state.password
+        })
+        .then(res => {
+            TokenService.saveAuthToken(res.authToken)
+            this.props.setUserId(res.id)
+            this.onLoginSuccess()
+          })
+          .catch(res => {
+            this.setState({ error: res.error })
+          })
     }
 
     passwordChange(pw) {
@@ -66,9 +90,7 @@ class Signup extends Component {
         const { error } = this.state
         return (
             <form onSubmit={e => this.verifySpecials(e)}>
-                <div role='alert'>
-                    {error && <p>{error}</p>}
-                </div>
+
                 <legend><h1>Sign Up</h1></legend>
                 <section>
                     <fieldset>
@@ -95,8 +117,13 @@ class Signup extends Component {
                             placeholder="password"
                             onChange={e => this.passwordConfirmChange(e.target.value)}
                             required
+                            className='confirm-password'
                         />
+                        <span>password must contain 8 characters (at least one of each: uppercase, lowercase, number and special character)</span>
                         <button type='submit'>submit</button>
+                    <div role='alert'>
+                    {error && <p>{error}</p>}
+                    </div>
                     </fieldset>
                 </section>
             </form>

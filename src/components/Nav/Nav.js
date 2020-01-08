@@ -24,7 +24,7 @@ export default class Header extends Component {
       <span className='login-link'>
         <Link
           to='/signup'>
-          Signup
+          signup
         </Link>
         {' '}
         <Link
@@ -35,14 +35,32 @@ export default class Header extends Component {
     )
   }
 
+  directHome(){
+    return(
+      <Link to='/home'>
+      recipe roulette
+      {'  '}
+    </Link>
+    )
+  }
+
+  directLanding(){
+    return(
+      <Link to='/'>
+      recipe roulette
+      {'  '}
+    </Link>
+    )
+
+  }
+
   render() {
     return (
       <nav className='Header'>
-        
-          <Link to='/home'>
-            recipe roulette
-            {'  '}
-          </Link>
+        {TokenService.hasAuthToken()
+          ? this.directHome()
+          : this.directLanding()
+        }
         {TokenService.hasAuthToken()
           ? this.renderLogoutLink()
           : this.renderLoginLink()}

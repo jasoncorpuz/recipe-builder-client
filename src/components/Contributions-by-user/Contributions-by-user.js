@@ -40,7 +40,6 @@ class ContributionsByUser extends Component {
         const { contributions,loaded } = this.state
         const contList =  loaded ? 
         contributions.map(cont => {
-            console.log(cont)
             if(cont.recipe.completed) {
                 return (
                     <div key={cont.id} id={cont.id} className='contribution'>
@@ -54,15 +53,15 @@ class ContributionsByUser extends Component {
                     <div key={cont.id} id={cont.id} className='contribution'>
                         {cont.ingredient} was contributed to {''}
                         <Link to='#'>{cont.recipe}</Link>
-                        <div className='name'>contribution name: {cont.contribution_name}</div>
+                        <div className='name'>your thoughts on that: <span className='contribution-name'>{cont.contribution_name}</span></div>
                     </div>
                 )
              }  
         }) 
-         : <section className='alert'>
+         : <>
              <h2>You haven't contributed anything yet!</h2>
                  <div className='link'><Link to='/contribute'>Get started here.</Link></div>
-            </section>
+            </>
 
         return (
             <section className='contributions-by-user'>

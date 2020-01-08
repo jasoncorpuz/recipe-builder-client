@@ -38,9 +38,6 @@ class Login extends Component {
     const { error } = this.state
     return (
       <form onSubmit={e => this.handleSubmit(e)}>
-        <div role='alert'>
-          {error && <p>{error}</p>}
-        </div>
         <legend><h1>Log In</h1></legend>
         <section>
           <fieldset>
@@ -49,6 +46,9 @@ class Login extends Component {
             <label htmlFor='password'>Password:</label>
             <input type='password' placeholder="password" name='password' required />
             <button type='submit'>submit</button>
+            <div role='alert'>
+              {error && <p>{error}</p>}
+            </div>
           </fieldset>
         </section>
       </form>
