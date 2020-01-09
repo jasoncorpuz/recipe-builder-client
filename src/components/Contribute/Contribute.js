@@ -94,14 +94,14 @@ class Contribute extends Component {
                 <fieldset>
                     <legend><h1>contribute to a recipe...</h1></legend>
                     <label htmlFor='contribution-name' >name your contribution:</label>
-                    <input type='text' placeholder="contribution name" onChange={e => this.updateContName(e)} required/>
+                    <input type='text' placeholder="literally name it anything" onChange={e => this.updateContName(e)} required/>
                     <label htmlFor='ingredient'>choose your ingredient:</label>
                     <select onChange={e => this.updateIng(e, this.context.completedRecipe)}>
                         {options}
                     </select>
                     <button type='submit'>submit</button>
                     <div className='info'>
-                        <p className='info'>When a recipe hits 5 contributions, it's completed. You'll be notified when a recipe you've contributed to is finished.</p>
+                        <p className='info'>When a recipe hits a certain amount of contributions, it's completed. You'll be notified when a recipe you've contributed to is finished.</p>
                     </div>
                 </fieldset>
             </form>
