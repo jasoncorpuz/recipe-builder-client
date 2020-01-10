@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import RecipeContext from '../RecipeContext'
 import ApiService from '../../services/api-service';
+import TokenService from '../../services/token-service'
+import LoggedOut from '../Logged-Out/LoggedOut'
 import './Contribute.css'
 
 class Contribute extends Component {
@@ -78,8 +80,11 @@ class Contribute extends Component {
                 })
             })
             .catch(e => console.log(e))
+    
+            
     }
-    render() {
+
+    renderContribute(){
         const { ingredients } = this.context
         const options = ingredients.length !== 1 ? ingredients.map(ing => {
             return (
@@ -105,8 +110,25 @@ class Contribute extends Component {
                     </div>
                 </fieldset>
             </form>
-        );
+        )
     }
+
+    renderLoggedOut(){
+        return(
+            <LoggedOut {...this.propsc}/>
+        )
+    }
+
+    render() {
+        return(
+            <div>
+                {TokenService.hasAuthToken() 
+                ? this.renderContribute()
+                : this.renderLoggedOut()
+                }
+            </div>
+        )
+     }
 }
 
 export default Contribute;
