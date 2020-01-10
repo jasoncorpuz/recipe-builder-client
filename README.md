@@ -4,7 +4,7 @@ https://recipe-roulette.now.sh
 A recipe generator that takes user's contributed ingredients to generate random recipes. 
 
 ## Landing Page
-![landing] (images/landing.png)
+![landing] (./images/landing.png)
 
 ## Home Page
 ![home] (images/home-page.png)
