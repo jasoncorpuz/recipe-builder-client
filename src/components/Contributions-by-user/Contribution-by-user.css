@@ -19,6 +19,9 @@ section.contributions-by-user {
     min-height: 700px;
 }
 
+button.delete-button {
+    background-color: rgba(128, 128, 128, 0.349);
+}
 
 @media only screen and (min-width:650px) {
     div.contribution {
