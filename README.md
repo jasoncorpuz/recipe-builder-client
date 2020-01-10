@@ -22,3 +22,8 @@ User selects from provided ingredients to contribute. The app then decides which
 ![recipe](images/recipe.png)
 
 A random name is generated based on the ingredients inside of the recipe. Clicking on the users in the recipe will allow you to see what recipes they've contributed to.
+
+## Technologies used
+React.js
+Node.js
+Postgresql
