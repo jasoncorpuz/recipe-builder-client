@@ -115,7 +115,7 @@ class Contribute extends Component {
 
     renderLoggedOut(){
         return(
-            <LoggedOut {...this.propsc}/>
+            <LoggedOut {...this.props}/>
         )
     }
 
